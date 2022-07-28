@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  become: yes
+  tasks: 
+     - name: installin apache2
+       apt: 
+           name: apache2 
+           state: present
+           update_cache: yes
+       notify:
+         - start nginx 
+  handlers:
+     - name: start apache2
+       service:
+         name: nginx
+         state: started
+      
+         
